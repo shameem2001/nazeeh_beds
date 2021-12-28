@@ -1,0 +1,48 @@
+name: nazeeh_beds
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^9.0.0
+  flutter_svg: ^0.21.0-nullsafety.0
+  meta: ^1.1.8
+  http: ^0.13.1
+  sqflite: ^2.0.0+3
+  path: ^1.7.0
+  shared_preferences: ^2.0.5
+  url_launcher: ^6.0.2
+  flutter_toggle_tab: ^1.0.0
+  percent_indicator: ^2.1.8
+  fluttertoast: ^8.0.3
+  image_picker: ^0.7.3
+  provider: ^5.0.0
+  double_back_to_close: ^1.0.2+mit
+  google_mobile_ads: ^1.0.1
+  google_fonts: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Medium.ttf
+          style: normal

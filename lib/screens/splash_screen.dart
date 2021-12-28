@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Spacer(),
             Image.asset(
-              "assets/organic.png",
+              "assets/Nazeeh_beds_logo2.png",
             ),
             Spacer(),
             Padding(

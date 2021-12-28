@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nazeeh_beds/screens/homepage.dart';
 import 'package:nazeeh_beds/screens/login_screen.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String id = '/splash';
@@ -24,12 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       seconds: 3,
     );
     Timer(duration, () async {
-      if(isLoggedIn){
-        Navigator.pushReplacementNamed(context, HomePage.id);
-      }
-      else{
-        Navigator.pushReplacementNamed(context, LoginScreen.id);
-      }
+        Navigator.pushReplacementNamed(context, AuthenticationWrapper.id);
     });
   }
 
@@ -72,3 +69,20 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
+class AuthenticationWrapper extends StatelessWidget {
+  static const String id = "auth_wrapper";
+  const AuthenticationWrapper({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User>();
+    if(firebaseUser != null) {
+      print("Already signed in");
+      return HomePage();
+    }
+    else{
+      print("Not signed in");
+      return LoginScreen();
+    }
+  }
+}

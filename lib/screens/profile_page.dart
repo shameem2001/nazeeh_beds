@@ -199,9 +199,7 @@ class _ProfilePageState extends State<ProfilePage> {
           // Do onTap() if it isn't null, otherwise do print()
             onTap: onTap != null
                 ? () => onTap()
-                : () {
-              print('Not set yet');
-            },
+                : null,
             child: child));
   }
 }

@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nazeeh_beds/components/custom_appbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:nazeeh_beds/authentication_service.dart';
 import 'package:nazeeh_beds/constants.dart';
 import 'package:nazeeh_beds/screens/homepage.dart';
 import 'package:nazeeh_beds/screens/register_screen.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = "login_page";
@@ -19,6 +21,9 @@ class _HomePageState extends State<LoginScreen> {
 
   bool isRememberMe = false;
   bool isVisible = false;
+
+  String email;
+  String password;
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +74,8 @@ class _HomePageState extends State<LoginScreen> {
                             ),),
                           ),
                           SizedBox(height: 30),
-                          buildTextField('Email', Icons.email, false, TextInputType.emailAddress),
-                          buildTextField('Password', Icons.lock, true, TextInputType.text),
+                          buildEmailField('Email', Icons.email, false, TextInputType.emailAddress),
+                          buildPasswordField('Password', Icons.lock, true, TextInputType.text),
                           buildForgotPasswordBtn(),
                           buildRememberMeBtn(),
                           buildLoginBtn(),
@@ -90,7 +95,7 @@ class _HomePageState extends State<LoginScreen> {
     );
   }
 
-  Widget buildTextField(String text, IconData icon, bool isHidden, TextInputType type) {
+  Widget buildEmailField(String text, IconData icon, bool isHidden, TextInputType type) {
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       padding: EdgeInsets.symmetric(
@@ -126,6 +131,72 @@ class _HomePageState extends State<LoginScreen> {
             ),
             height: 60,
             child: TextField(
+              onChanged: (value){
+                email = value;
+              },
+              keyboardType: type,
+              style: TextStyle(
+                color: Colors.black87,
+              ),
+              obscureText: false,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  icon,
+                  color: kprimaryColor,
+                ),
+                hintText: text,
+                hintStyle: TextStyle(
+                  color: Colors.black38,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPasswordField(String text, IconData icon, bool isHidden, TextInputType type) {
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(
+        horizontal: 25,
+        vertical: 20,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 6,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            height: 60,
+            child: TextField(
+              onChanged: (value){
+                password = value;
+              },
               keyboardType: type,
               style: TextStyle(
                 color: Colors.black87,
@@ -216,7 +287,11 @@ class _HomePageState extends State<LoginScreen> {
         elevation: 5,
         onPressed: (){
           print("Login Pressed");
-          Navigator.pushReplacementNamed(context, HomePage.id);
+          context.read<AuthenticationService>().signInWithEmailAndPassword(
+            email: email,
+            password: password,
+            context: context
+          );
         },
         padding: EdgeInsets.all(15),
         shape: RoundedRectangleBorder(

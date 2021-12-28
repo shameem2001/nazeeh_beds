@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import '../authentication_service.dart';
 
 
 class CustomDrawer extends StatefulWidget {
@@ -71,6 +73,7 @@ class CustomDrawerState extends State<CustomDrawer> {
               Divider(height: 10,thickness: 1,),
               GestureDetector(
                 onTap: () {
+                  context.read<AuthenticationService>().signOut(context);
                 },
                 child: ListTile(
                   leading: Icon(FontAwesomeIcons.signOutAlt,color: primaryColour,),

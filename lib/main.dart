@@ -1,4 +1,6 @@
 import 'package:double_back_to_close/double_back_to_close.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nazeeh_beds/screens/address_page.dart';
 import 'package:nazeeh_beds/screens/cart_page.dart';
@@ -18,48 +20,62 @@ import 'package:nazeeh_beds/screens/splash_screen.dart';
 import 'package:nazeeh_beds/screens/track_order_page.dart';
 import 'package:nazeeh_beds/screens/wishlist_page.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
+import 'authentication_service.dart';
 
-void main() {
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  await Firebase.initializeApp();
   runApp(NazeehBeds());
 }
 
 class NazeehBeds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        accentColor: Colors.white,
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (_) => AuthenticationService(FirebaseAuth.instance),
+        ),
+        StreamProvider(create: (context) => context.read<AuthenticationService>().authStateChanges,
+        initialData: null,
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          accentColor: Colors.white,
+        ),
+        initialRoute: ProductDescriptionPage.id,
+        routes: {
+          AuthenticationWrapper.id: (context) => AuthenticationWrapper(),
+          SplashScreen.id: (context) => SplashScreen(),
+          RegisterScreen.id: (context) => RegisterScreen(),
+          LoginScreen.id: (context) => DoubleBack(
+            message: "Press back again to exit",
+            child: LoginScreen(),
+          ),
+          HomePage.id: (context) => DoubleBack(
+            message: "Press back again to exit",
+            child: HomePage(),
+          ),
+          SearchScreen.id: (context) => SearchScreen(),
+          WishlistPage.id: (context) => WishlistPage(),
+          CartPage.id: (context) => CartPage(),
+          ProfilePage.id: (context) => ProfilePage(),
+          EditProfilePage.id: (context) => EditProfilePage(),
+          NotificationPage.id: (context) => NotificationPage(),
+          ChatboxPage.id: (context) => ChatboxPage(),
+          ProductListPage.id: (context) => ProductListPage(),
+          ProductDescriptionPage.id: (context) => ProductDescriptionPage(),
+          AddressPage.id: (context) => AddressPage(),
+          CheckoutPage.id: (context) => CheckoutPage(),
+          PaymentPage.id: (context) => PaymentPage(),
+          TrackOrderPage.id: (context) => TrackOrderPage(),
+        },
       ),
-      initialRoute: ProfilePage.id,
-      routes: {
-        SplashScreen.id: (context) => SplashScreen(),
-        RegisterScreen.id: (context) => RegisterScreen(),
-        LoginScreen.id: (context) => DoubleBack(
-          message: "Press back again to exit",
-          child: LoginScreen(),
-        ),
-        HomePage.id: (context) => DoubleBack(
-          message: "Press back again to exit",
-          child: HomePage(),
-        ),
-        SearchScreen.id: (context) => SearchScreen(),
-        WishlistPage.id: (context) => WishlistPage(),
-        CartPage.id: (context) => CartPage(),
-        ProfilePage.id: (context) => ProfilePage(),
-        EditProfilePage.id: (context) => EditProfilePage(),
-        NotificationPage.id: (context) => NotificationPage(),
-        ChatboxPage.id: (context) => ChatboxPage(),
-        ProductListPage.id: (context) => ProductListPage(),
-        ProductDescriptionPage.id: (context) => ProductDescriptionPage(),
-        AddressPage.id: (context) => AddressPage(),
-        CheckoutPage.id: (context) => CheckoutPage(),
-        PaymentPage.id: (context) => PaymentPage(),
-        TrackOrderPage.id: (context) => TrackOrderPage(),
-      },
     );
   }
 }

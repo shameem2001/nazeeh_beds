@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nazeeh_beds/components/custom_appbar.dart';
-import 'package:nazeeh_beds/screens/chatbox_page.dart';
 import 'package:nazeeh_beds/screens/login_screen.dart';
-import 'package:nazeeh_beds/screens/notification_page.dart';
-
+import 'package:provider/provider.dart';
+import '../authentication_service.dart';
 import '../constants.dart';
-import 'homepage.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String id = "register_screen";
@@ -20,6 +17,12 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   bool isVisible = false;
   bool isAgree = false;
+
+  String username = "";
+  String email = "";
+  String phone = "";
+  String password = "";
+  String confirmPassword = "";
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +74,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),),
                           ),
                           SizedBox(height: 30),
-                          buildTextField('Username', Icons.person, false, TextInputType.name),
-                          buildTextField('Email Address', Icons.email, false, TextInputType.emailAddress),
-                          buildTextField('Phone number', Icons.phone, false, TextInputType.number),
-                          buildTextField('Password', Icons.lock, true, TextInputType.text),
-                          buildTextField('Confirm password', Icons.lock, true, TextInputType.text),
+                          buildUserName('Username', Icons.person, false, TextInputType.name),
+                          buildEmail('Email Address', Icons.email, false, TextInputType.emailAddress),
+                          buildPhone('Phone number', Icons.phone, false, TextInputType.number),
+                          buildPassword('Password', Icons.lock, true, TextInputType.text),
+                          buildConfirmPassword('Confirm password', Icons.lock, true, TextInputType.text),
                           SizedBox(height: 20),
                           buildCheckbox(),
                           SizedBox(height: 20),
@@ -93,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget buildTextField(String text, IconData icon, bool isHidden, TextInputType type) {
+  Widget buildUserName(String text, IconData icon, bool isHidden, TextInputType type) {
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       padding: EdgeInsets.symmetric(
@@ -129,6 +132,271 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             height: 60,
             child: TextField(
+              onChanged: (value){
+                username = value;
+                print(username);
+              },
+              keyboardType: type,
+              style: TextStyle(
+                color: Colors.black87,
+              ),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  icon,
+                  color: kprimaryColor,
+                ),
+                hintText: text,
+                hintStyle: TextStyle(
+                  color: Colors.black38,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildEmail(String text, IconData icon, bool isHidden, TextInputType type) {
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(
+        horizontal: 25,
+        vertical: 20,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 6,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            height: 60,
+            child: TextField(
+              onChanged: (value){
+                email = value;
+                print(email);
+              },
+              keyboardType: type,
+              style: TextStyle(
+                color: Colors.black87,
+              ),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  icon,
+                  color: kprimaryColor,
+                ),
+                hintText: text,
+                hintStyle: TextStyle(
+                  color: Colors.black38,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPhone(String text, IconData icon, bool isHidden, TextInputType type) {
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(
+        horizontal: 25,
+        vertical: 20,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 6,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            height: 60,
+            child: TextField(
+              onChanged: (value){
+                phone = value;
+                print(phone);
+              },
+              keyboardType: type,
+              style: TextStyle(
+                color: Colors.black87,
+              ),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  icon,
+                  color: kprimaryColor,
+                ),
+                hintText: text,
+                hintStyle: TextStyle(
+                  color: Colors.black38,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPassword(String text, IconData icon, bool isHidden, TextInputType type) {
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(
+        horizontal: 25,
+        vertical: 20,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 6,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            height: 60,
+            child: TextField(
+              onChanged: (value){
+                password = value;
+                print(password);
+              },
+              keyboardType: type,
+              style: TextStyle(
+                color: Colors.black87,
+              ),
+              obscureText: !isVisible,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  icon,
+                  color: kprimaryColor,
+                ),
+                hintText: text,
+                suffixIcon: isHidden == true? InkWell(
+                  onTap: (){
+                    setState(() {
+                      isVisible = !isVisible;
+                    });
+                  },
+                  child: Icon(isVisible?Icons.visibility: Icons.visibility_off, color: kprimaryColor,),)
+                    : null,
+                hintStyle: TextStyle(
+                  color: Colors.black38,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildConfirmPassword(String text, IconData icon, bool isHidden, TextInputType type) {
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(
+        horizontal: 25,
+        vertical: 20,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 6,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            height: 60,
+            child: TextField(
+              onChanged: (value){
+                confirmPassword = value;
+                print(confirmPassword);
+              },
               keyboardType: type,
               style: TextStyle(
                 color: Colors.black87,
@@ -230,8 +498,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: RaisedButton(
         elevation: 5,
         onPressed: (){
-          print("Login Pressed");
-          Navigator.pushReplacementNamed(context, HomePage.id);
+          print("Signup Pressed");
+          context.read<AuthenticationService>().createUserWithEmailAndPassword(
+              email: email,
+              password: password,
+              context: context
+          );
         },
         padding: EdgeInsets.all(15),
         shape: RoundedRectangleBorder(

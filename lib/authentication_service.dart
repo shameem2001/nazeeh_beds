@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nazeeh_beds/screens/homepage.dart';
 import 'package:nazeeh_beds/screens/login_screen.dart';
 
@@ -57,4 +58,15 @@ class AuthenticationService{
     }
   }
 
+  Future<String> deleteUser(BuildContext context) async{
+    try {
+      await _firebaseAuth.currentUser.delete();
+      Navigator.popAndPushNamed(context, LoginScreen.id);
+      return "User Deleted";
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        return 'The user must reauthenticate before this operation can be executed.';
+      }
+    }
+  }
 }

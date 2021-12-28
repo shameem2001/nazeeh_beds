@@ -367,6 +367,8 @@ class _HomePageState extends State<LoginScreen> {
   Widget buildSocialBtn() {
     return GestureDetector(
       onTap: ()  {
+        // Future<bool> user = context.read<AuthenticationService>().googleSignIn();
+        // if(user == true)  Navigator.pushReplacementNamed(context, HomePage.id);
       },
       child: Container(
         margin: EdgeInsets.symmetric(

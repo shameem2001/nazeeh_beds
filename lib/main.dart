@@ -48,7 +48,7 @@ class NazeehBeds extends StatelessWidget {
         theme: ThemeData(
           accentColor: Colors.white,
         ),
-        initialRoute: ProductDescriptionPage.id,
+        initialRoute: SplashScreen.id,
         routes: {
           AuthenticationWrapper.id: (context) => AuthenticationWrapper(),
           SplashScreen.id: (context) => SplashScreen(),

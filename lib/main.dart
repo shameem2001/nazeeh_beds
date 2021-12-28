@@ -1,3 +1,4 @@
+import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/material.dart';
 import 'package:nazeeh_beds/screens/address_page.dart';
 import 'package:nazeeh_beds/screens/cart_page.dart';
@@ -33,12 +34,18 @@ class NazeehBeds extends StatelessWidget {
       theme: ThemeData(
         accentColor: Colors.white,
       ),
-      initialRoute: SplashScreen.id,
+      initialRoute: ProfilePage.id,
       routes: {
         SplashScreen.id: (context) => SplashScreen(),
         RegisterScreen.id: (context) => RegisterScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        HomePage.id: (context) => HomePage(),
+        LoginScreen.id: (context) => DoubleBack(
+          message: "Press back again to exit",
+          child: LoginScreen(),
+        ),
+        HomePage.id: (context) => DoubleBack(
+          message: "Press back again to exit",
+          child: HomePage(),
+        ),
         SearchScreen.id: (context) => SearchScreen(),
         WishlistPage.id: (context) => WishlistPage(),
         CartPage.id: (context) => CartPage(),

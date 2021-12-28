@@ -22,60 +22,70 @@ class _HomePageState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: GestureDetector(
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        moreLighterPrimaryColor,
-                        lighterPrimaryColor,
-                        lightPrimaryColor,
-                        primaryColor,
-                      ],
-                    )
-                  ),
-                ),
-                Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40.0),
-                          child: Text('Welcome', style: GoogleFonts.raleway(
-                            fontSize: 40,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),),
-                        ),
-                        SizedBox(height: 30),
-                        buildTextField('Email', Icons.email, false, TextInputType.emailAddress),
-                        buildTextField('Password', Icons.lock, true, TextInputType.text),
-                        buildForgotPasswordBtn(),
-                        buildRememberMeBtn(),
-                        buildLoginBtn(),
-                        buildSignUpBtn(),
-                        SizedBox(height: 20),
-                        buildSignInWithText(),
-                        buildSocialBtn(),
-                      ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (Navigator.canPop(context)) {
+          Navigator.pop(context);
+          return true;
+        } else {
+          return false;
+        }
+      },
+      child: SafeArea(
+        child: Scaffold(
+          body: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle.light,
+            child: GestureDetector(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          kmoreLighterPrimaryColor,
+                          klighterPrimaryColor,
+                          klightPrimaryColor,
+                          kprimaryColor,
+                        ],
+                      )
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),),
+                  Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40.0),
+                            child: Text('Welcome', style: GoogleFonts.raleway(
+                              fontSize: 40,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),),
+                          ),
+                          SizedBox(height: 30),
+                          buildTextField('Email', Icons.email, false, TextInputType.emailAddress),
+                          buildTextField('Password', Icons.lock, true, TextInputType.text),
+                          buildForgotPasswordBtn(),
+                          buildRememberMeBtn(),
+                          buildLoginBtn(),
+                          buildSignUpBtn(),
+                          SizedBox(height: 20),
+                          buildSignInWithText(),
+                          buildSocialBtn(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),),
+        ),
       ),
     );
   }
@@ -126,7 +136,7 @@ class _HomePageState extends State<LoginScreen> {
                 contentPadding: EdgeInsets.only(top: 14.0),
                 prefixIcon: Icon(
                   icon,
-                  color: primaryColor,
+                  color: kprimaryColor,
                 ),
                 hintText: text,
                 hintStyle: TextStyle(
@@ -138,7 +148,7 @@ class _HomePageState extends State<LoginScreen> {
                       isVisible = !isVisible;
                     });
                   },
-                  child: Icon(isVisible?Icons.visibility: Icons.visibility_off, color: primaryColor,),)
+                  child: Icon(isVisible?Icons.visibility: Icons.visibility_off, color: kprimaryColor,),)
                     : null,
               ),
             ),
@@ -178,7 +188,7 @@ class _HomePageState extends State<LoginScreen> {
             child: Checkbox(
               value: isRememberMe,
               activeColor: Colors.white,
-              checkColor: primaryColor,
+              checkColor: kprimaryColor,
               onChanged: (value){
                 setState(() {
                   isRememberMe = value;
@@ -215,7 +225,7 @@ class _HomePageState extends State<LoginScreen> {
         child: Text(
           'LOGIN',
           style: TextStyle(
-            color: primaryColor,
+            color: kprimaryColor,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

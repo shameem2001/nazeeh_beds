@@ -23,7 +23,7 @@ AppBar buildAppBar(String text, IconData icon1, IconData icon2, IconData icon3, 
     flexibleSpace: Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
-          color: primaryColor,
+          color: kprimaryColor,
       ),
     ),
   );

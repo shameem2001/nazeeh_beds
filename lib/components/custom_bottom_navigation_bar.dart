@@ -142,7 +142,7 @@ class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = new Paint()
-      ..color = primaryColor
+      ..color = kprimaryColor
       ..style = PaintingStyle.fill;
 
     Path path = Path();

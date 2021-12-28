@@ -25,7 +25,6 @@ class _HomePageState extends State<HomePage> {
           Navigator.pop(context);
           return true;
         } else {
-          Navigator.popAndPushNamed(context, HomePage.id);
           return false;
         }
       },

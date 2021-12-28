@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nazeeh_beds/components/custom_appbar.dart';
 import 'package:nazeeh_beds/screens/chatbox_page.dart';
+import 'package:nazeeh_beds/screens/login_screen.dart';
 import 'package:nazeeh_beds/screens/notification_page.dart';
 
 import '../constants.dart';
@@ -22,61 +23,72 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: GestureDetector(
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          moreLighterPrimaryColor,
-                          lighterPrimaryColor,
-                          lightPrimaryColor,
-                          primaryColor,
-                        ],
-                      )
-                  ),
-                ),
-                Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40.0),
-                          child: Text('Register', style: GoogleFonts.raleway(
-                            fontSize: 40,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),),
-                        ),
-                        SizedBox(height: 30),
-                        buildTextField('Username', Icons.person, false, TextInputType.name),
-                        buildTextField('Email Address', Icons.email, false, TextInputType.emailAddress),
-                        buildTextField('Phone number', Icons.phone, false, TextInputType.number),
-                        buildTextField('Password', Icons.lock, true, TextInputType.text),
-                        buildTextField('Confirm password', Icons.lock, true, TextInputType.text),
-                        SizedBox(height: 20),
-                        buildCheckbox(),
-                        SizedBox(height: 20),
-                        buildSignUpBtn(),
-                        SizedBox(height: 20),
-                      ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (Navigator.canPop(context)) {
+          Navigator.pop(context);
+          return true;
+        } else {
+          Navigator.popAndPushNamed(context, LoginScreen.id);
+          return false;
+        }
+      },
+      child: SafeArea(
+        child: Scaffold(
+          body: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle.light,
+            child: GestureDetector(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            kmoreLighterPrimaryColor,
+                            klighterPrimaryColor,
+                            klightPrimaryColor,
+                            kprimaryColor,
+                          ],
+                        )
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),),
+                  Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40.0),
+                            child: Text('Register', style: GoogleFonts.raleway(
+                              fontSize: 40,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),),
+                          ),
+                          SizedBox(height: 30),
+                          buildTextField('Username', Icons.person, false, TextInputType.name),
+                          buildTextField('Email Address', Icons.email, false, TextInputType.emailAddress),
+                          buildTextField('Phone number', Icons.phone, false, TextInputType.number),
+                          buildTextField('Password', Icons.lock, true, TextInputType.text),
+                          buildTextField('Confirm password', Icons.lock, true, TextInputType.text),
+                          SizedBox(height: 20),
+                          buildCheckbox(),
+                          SizedBox(height: 20),
+                          buildSignUpBtn(),
+                          SizedBox(height: 20),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),),
+        ),
       ),
     );
   }
@@ -127,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 contentPadding: EdgeInsets.only(top: 14.0),
                 prefixIcon: Icon(
                   icon,
-                  color: primaryColor,
+                  color: kprimaryColor,
                 ),
                 hintText: text,
                 suffixIcon: isHidden == true? InkWell(
@@ -136,7 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       isVisible = !isVisible;
                     });
                   },
-                  child: Icon(isVisible?Icons.visibility: Icons.visibility_off, color: primaryColor,),)
+                  child: Icon(isVisible?Icons.visibility: Icons.visibility_off, color: kprimaryColor,),)
                     : null,
                 hintStyle: TextStyle(
                   color: Colors.black38,
@@ -160,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Checkbox(
               value: isAgree,
               activeColor: Colors.white,
-              checkColor: primaryColor,
+              checkColor: kprimaryColor,
               onChanged: (value){
                 setState(() {
                   isAgree = value;
@@ -228,7 +240,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Text(
           'SIGN UP',
           style: TextStyle(
-            color: primaryColor,
+            color: kprimaryColor,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

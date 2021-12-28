@@ -12,7 +12,7 @@ class ProfileHeader extends StatelessWidget {
     return Container(
       color: klightPrimaryColor,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+        padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nazeeh_beds/components/custom_profile_header.dart';
 import 'package:nazeeh_beds/constants.dart';
 
@@ -32,7 +33,8 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               children: [
                 ProfileHeader(),
-                Expanded(
+                Flexible(
+                  fit: FlexFit.loose,
                   child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -41,63 +43,140 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     color: Colors.white,
                   ),
-                  child: Column(
+                  child: Stack(
+                    fit: StackFit.passthrough,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
-                        child: Container(
-                          height: 60,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text('Name', style: TextStyle(color: Colors.white70),),
+                        padding: const EdgeInsets.only(top:10.0),
+                        child: StaggeredGridView.count(
+                          shrinkWrap: false,
+                          crossAxisCount: 1,
+                          mainAxisSpacing: 20.0,
+                          children: [
+                            Container(),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: buildTile(
+                                Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text('Daily Usage',
+                                              style: TextStyle(color: Colors.blueAccent, fontSize: 16.0)),
+                                          SizedBox(height: 5,),
+                                          Text(' 18 units',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 30.0))
+                                        ],
+                                      ),
+                                      Material(
+                                        color: Colors.blue,
+                                        borderRadius: BorderRadius.circular(24.0),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Icon(Icons.timeline,
+                                                color: Colors.white, size: 30.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius
-                                .all(Radius.circular(30)),
-                            border: Border.all(width: 1.0, color: Colors.white70),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
-                        child: Container(
-                          height: 60,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text('Email', style: TextStyle(color: Colors.white70),),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: buildTile(
+                                Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text('Daily Usage',
+                                              style: TextStyle(color: Colors.blueAccent, fontSize: 16.0)),
+                                          SizedBox(height: 5,),
+                                          Text(' 18 units',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 30.0))
+                                        ],
+                                      ),
+                                      Material(
+                                        color: Colors.blue,
+                                        borderRadius: BorderRadius.circular(24.0),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Icon(Icons.timeline,
+                                                color: Colors.white, size: 30.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.white70)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
-                        child: Container(
-                          height: 60,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text('Type something about yourself', style: TextStyle(color: Colors.white70),),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: buildTile(
+                                Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text('Daily Usage',
+                                              style: TextStyle(color: Colors.blueAccent, fontSize: 16.0)),
+                                          SizedBox(height: 5,),
+                                          Text(' 18 units',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 30.0))
+                                        ],
+                                      ),
+                                      Material(
+                                        color: Colors.blue,
+                                        borderRadius: BorderRadius.circular(24.0),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Icon(Icons.timeline,
+                                                color: Colors.white, size: 30.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.white70)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
-                        child: Container(
-                          height: 60,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text('Phone number', style: TextStyle(color: Colors.white70),),
-                            ),
-                          ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.white70)),
+                          ],
+                          staggeredTiles: [
+                            StaggeredTile.extent(1, 20.0),
+                            StaggeredTile.extent(1, 400.0),
+                            StaggeredTile.extent(1, 400.0),
+                          ],
                         ),
                       ),
                     ],
@@ -109,6 +188,21 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
+  }
+
+  Widget buildTile(Widget child, {Function() onTap}) {
+    return Material(
+        elevation: 14.0,
+        borderRadius: BorderRadius.circular(12.0),
+        shadowColor: Colors.grey[400],
+        child: InkWell(
+          // Do onTap() if it isn't null, otherwise do print()
+            onTap: onTap != null
+                ? () => onTap()
+                : () {
+              print('Not set yet');
+            },
+            child: child));
   }
 }
 

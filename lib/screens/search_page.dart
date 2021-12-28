@@ -21,7 +21,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(
-          'Nazeeh Beds',
+          'Search',
           Icons.arrow_back_ios,
           FontAwesomeIcons.comments,
           Icons.notifications,

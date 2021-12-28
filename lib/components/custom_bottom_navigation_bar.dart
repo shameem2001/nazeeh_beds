@@ -54,14 +54,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 Center(
                   child: CircleAvatar(
                     radius: 30,
-                    backgroundColor: Colors.grey[400],
+                    backgroundColor: Colors.grey[350],
                   ),
                 ),
                 Center(
                   child: IconButton(
                     icon: FaIcon(FontAwesomeIcons.home),
                     iconSize: 28,
-                    color: Colors.black,
+                    color: kprimaryColor,
                     onPressed: (){
                       setBottomBarIndex(2);
                     },

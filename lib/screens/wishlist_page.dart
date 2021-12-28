@@ -21,7 +21,7 @@ class _WishlistPageState extends State<WishlistPage> {
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(
-          'Nazeeh Beds',
+          'Wishlist',
           Icons.arrow_back_ios,
           FontAwesomeIcons.comments,
           Icons.notifications,

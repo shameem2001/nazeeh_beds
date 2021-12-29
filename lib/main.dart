@@ -25,7 +25,7 @@ import 'authentication_service.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
+  await MobileAds.instance.initialize();
   await Firebase.initializeApp();
   runApp(NazeehBeds());
 }

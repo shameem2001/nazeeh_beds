@@ -366,16 +366,16 @@ class _HomePageState extends State<LoginScreen> {
 
   Widget buildSocialBtn() {
     return GestureDetector(
-      onTap: ()  {
-        // Future<bool> user = context.read<AuthenticationService>().googleSignIn();
-        // if(user == true)  Navigator.pushReplacementNamed(context, HomePage.id);
+      onTap: ()  async{
+        await context.read<AuthenticationService>().signInWithGoogle();
+        await Navigator.pushReplacementNamed(context, HomePage.id);
       },
       child: Container(
         margin: EdgeInsets.symmetric(
           vertical: 20,
         ),
-        height: 50.0,
-        width: 50.0,
+        height: 60.0,
+        width: 60.0,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white,

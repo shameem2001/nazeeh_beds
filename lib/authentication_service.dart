@@ -32,6 +32,7 @@ class AuthenticationService{
   Future<String> signOut(BuildContext context) async{
     try{
       await _firebaseAuth.signOut();
+      if(await GoogleSignIn().isSignedIn() == true) await GoogleSignIn().disconnect();
       Navigator.popAndPushNamed(context, LoginScreen.id);
       return "Signed out";
     }
@@ -67,6 +68,27 @@ class AuthenticationService{
       if (e.code == 'requires-recent-login') {
         return 'The user must reauthenticate before this operation can be executed.';
       }
+    }
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    try{
+      // Trigger the authentication flow
+      final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth = await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      // Once signed in, return the UserCredential
+      return await _firebaseAuth.signInWithCredential(credential);
+    }
+    on FirebaseException catch(e){
+      return null;
     }
   }
 }

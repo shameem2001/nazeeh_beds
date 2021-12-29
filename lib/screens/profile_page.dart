@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nazeeh_beds/components/custom_profile_header.dart';
 import 'package:nazeeh_beds/constants.dart';
 
@@ -49,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Padding(
                         padding: const EdgeInsets.only(top:10.0),
                         child: StaggeredGridView.count(
-                          shrinkWrap: false,
+                          shrinkWrap: true,
                           crossAxisCount: 1,
                           mainAxisSpacing: 20.0,
                           children: [
@@ -57,125 +58,118 @@ class _ProfilePageState extends State<ProfilePage> {
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 20.0),
                               child: buildTile(
-                                Padding(
-                                  padding: const EdgeInsets.all(24.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text('Daily Usage',
-                                              style: TextStyle(color: Colors.blueAccent, fontSize: 16.0)),
-                                          SizedBox(height: 5,),
-                                          Text(' 18 units',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 30.0))
-                                        ],
+                                Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(24.0, 10, 24, 0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Orders', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
                                       ),
-                                      Material(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(24.0),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Icon(Icons.timeline,
-                                                color: Colors.white, size: 30.0),
-                                          ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Wallet',
+                                        style: kProfileDetailsTextStyle,
                                         ),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('My Rewards', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Invite friend and Earn', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Customer Care', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 20.0),
                               child: buildTile(
-                                Padding(
-                                  padding: const EdgeInsets.all(24.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text('Daily Usage',
-                                              style: TextStyle(color: Colors.blueAccent, fontSize: 16.0)),
-                                          SizedBox(height: 5,),
-                                          Text(' 18 units',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 30.0))
-                                        ],
+                                Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(24.0, 10, 24, 0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Address', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
                                       ),
-                                      Material(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(24.0),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Icon(Icons.timeline,
-                                                color: Colors.white, size: 30.0),
-                                          ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Payment',
+                                          style: kProfileDetailsTextStyle,
                                         ),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                              child: buildTile(
-                                Padding(
-                                  padding: const EdgeInsets.all(24.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text('Daily Usage',
-                                              style: TextStyle(color: Colors.blueAccent, fontSize: 16.0)),
-                                          SizedBox(height: 5,),
-                                          Text(' 18 units',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 30.0))
-                                        ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Shipping', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
                                       ),
-                                      Material(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(24.0),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Icon(Icons.timeline,
-                                                color: Colors.white, size: 30.0),
-                                          ),
-                                        ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Notification', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Language', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: ListTile(
+                                        onTap: null,
+                                        title: Text('Terms and Conditions', style: kProfileDetailsTextStyle,),
+                                        trailing: Icon(Icons.arrow_forward_ios, size: 20),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ],
                           staggeredTiles: [
                             StaggeredTile.extent(1, 20.0),
-                            StaggeredTile.extent(1, 400.0),
-                            StaggeredTile.extent(1, 400.0),
+                            StaggeredTile.extent(1, 300.0),
+                            StaggeredTile.extent(1, 350.0),
                           ],
                         ),
                       ),
@@ -203,4 +197,3 @@ class _ProfilePageState extends State<ProfilePage> {
             child: child));
   }
 }
-

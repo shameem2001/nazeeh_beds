@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nazeeh_beds/constants.dart';
 import 'package:nazeeh_beds/screens/homepage.dart';
 import 'package:nazeeh_beds/screens/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool isLoggedIn = true;
   @override
   Widget build(BuildContext context) {
     return initScreen(context);
@@ -33,36 +33,68 @@ class _SplashScreenState extends State<SplashScreen> {
   initScreen(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Spacer(),
-            Image.asset(
-              "assets/Nazeeh_beds_logo2.png",
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 15),
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        'Nazeeh Beds',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: Color(0XFFA6BCD0),
-                            fontSize: 17),
-                      ),
+        backgroundColor: kmoreLighterPrimaryColor,
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  kmoreLighterPrimaryColor,
+                  klighterPrimaryColor,
+                  klightPrimaryColor,
+                  kprimaryColor,
+                ],
+              )
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Spacer(),
+              Stack(
+                children: [
+                  Image.asset(
+                    "assets/nazeeh_beds_blue.png",
+                    scale: 1.8,
+                  ),
+                  Positioned(
+                    bottom: 25,
+                    left: 60,
+                    child: Text('nazeeh beds',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                          fontSize: 24),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-          ],
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5, bottom: 10),
+                        child: Text(
+                          '©Copyright 2021 Nazeeh Beds',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: 14),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

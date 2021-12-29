@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nazeeh_beds/screens/edit_profile_page.dart';
 
 import '../constants.dart';
 
@@ -12,7 +13,7 @@ class ProfileHeader extends StatelessWidget {
     return Container(
       color: klightPrimaryColor,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
+        padding: const EdgeInsets.fromLTRB(30, 50, 30, 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -48,8 +49,13 @@ class ProfileHeader extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('Edit',
-                  style: kblueTextColorSmall,
+                TextButton(
+                  onPressed: (){
+                    Navigator.pushReplacementNamed(context, EditProfilePage.id);
+                  },
+                  child: Text('Edit',
+                    style: kblueTextColorSmall,
+                  ),
                 ),
               ],
             ),

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nazeeh_beds/authentication_service.dart';
 import 'package:nazeeh_beds/constants.dart';
 import 'package:nazeeh_beds/screens/homepage.dart';
@@ -27,70 +26,60 @@ class _HomePageState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (Navigator.canPop(context)) {
-          Navigator.pop(context);
-          return true;
-        } else {
-          return false;
-        }
-      },
-      child: SafeArea(
-        child: Scaffold(
-          body: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: GestureDetector(
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          kmoreLighterPrimaryColor,
-                          klighterPrimaryColor,
-                          klightPrimaryColor,
-                          kprimaryColor,
-                        ],
-                      )
+    return SafeArea(
+      child: Scaffold(
+        body: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: GestureDetector(
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        kmoreLighterPrimaryColor,
+                        klighterPrimaryColor,
+                        klightPrimaryColor,
+                        kprimaryColor,
+                      ],
+                    )
+                  ),
+                ),
+                Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 40.0),
+                          child: Text('Welcome', style: GoogleFonts.raleway(
+                            fontSize: 40,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),),
+                        ),
+                        SizedBox(height: 30),
+                        buildEmailField('Email', Icons.email, false, TextInputType.emailAddress),
+                        buildPasswordField('Password', Icons.lock, true, TextInputType.text),
+                        buildForgotPasswordBtn(),
+                        buildRememberMeBtn(),
+                        buildLoginBtn(),
+                        buildSignUpBtn(),
+                        SizedBox(height: 20),
+                        buildSignInWithText(),
+                        buildSocialBtn(),
+                      ],
                     ),
                   ),
-                  Center(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 40.0),
-                            child: Text('Welcome', style: GoogleFonts.raleway(
-                              fontSize: 40,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),),
-                          ),
-                          SizedBox(height: 30),
-                          buildEmailField('Email', Icons.email, false, TextInputType.emailAddress),
-                          buildPasswordField('Password', Icons.lock, true, TextInputType.text),
-                          buildForgotPasswordBtn(),
-                          buildRememberMeBtn(),
-                          buildLoginBtn(),
-                          buildSignUpBtn(),
-                          SizedBox(height: 20),
-                          buildSignInWithText(),
-                          buildSocialBtn(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),),
-        ),
+                ),
+              ],
+            ),
+          ),),
       ),
     );
   }
@@ -387,7 +376,7 @@ class _HomePageState extends State<LoginScreen> {
             ),
           ],
           image: DecorationImage(
-            image: AssetImage('assets/google_icon.jpg'),
+            image: AssetImage('assets/google_icon.png'),
           ),
         ),
         //child: Icon(FontAwesomeIcons.google, size: 26,),

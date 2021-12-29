@@ -50,17 +50,14 @@ class NazeehBeds extends StatelessWidget {
         ),
         initialRoute: SplashScreen.id,
         routes: {
-          AuthenticationWrapper.id: (context) => AuthenticationWrapper(),
+          AuthenticationWrapper.id: (context) => DoubleBack(
+            message: "Press back again to exit",
+            child: AuthenticationWrapper(),
+          ),
           SplashScreen.id: (context) => SplashScreen(),
           RegisterScreen.id: (context) => RegisterScreen(),
-          LoginScreen.id: (context) => DoubleBack(
-            message: "Press back again to exit",
-            child: LoginScreen(),
-          ),
-          HomePage.id: (context) => DoubleBack(
-            message: "Press back again to exit",
-            child: HomePage(),
-          ),
+          LoginScreen.id: (context) => LoginScreen(),
+          HomePage.id: (context) => HomePage(),
           SearchScreen.id: (context) => SearchScreen(),
           WishlistPage.id: (context) => WishlistPage(),
           CartPage.id: (context) => CartPage(),

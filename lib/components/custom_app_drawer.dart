@@ -44,7 +44,7 @@ class CustomDrawerState extends State<CustomDrawer> {
                 ),
                 currentAccountPicture: Container(
                   height: 60,
-                  child: Image.asset('assets/app_icon.png'),
+                  child: Image.asset('assets/nazeeh_beds_blue.png'),
                 ),
                 decoration: BoxDecoration(color: Colors.white),
               ),

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nazeeh_beds/components/custom_app_drawer.dart';
 import 'package:nazeeh_beds/components/custom_appbar.dart';
 import 'package:nazeeh_beds/components/custom_bottom_navigation_bar.dart';
+import '../constants.dart';
 import 'chatbox_page.dart';
 import 'notification_page.dart';
 
@@ -33,75 +34,92 @@ class _HomePageState extends State<HomePage> {
         ),
         drawer: CustomDrawer(),
         body: ListView(
-          padding: const EdgeInsets.symmetric(vertical:20, horizontal: 20),
+          physics: BouncingScrollPhysics(),
           children: [
-            buildTile(
-              Container(
-                height: 150,
-                width: double.infinity,
-                child:Text("Hello"),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: buildTile(
+                Container(
+                  height: 150,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: DecorationImage(
+                        image: AssetImage('assets/banner_img.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Colors.black,
+                        Colors.black54,
+                        Colors.white54,
+                        Colors.white,
+                      ],
+                    ),
+                  ),
+                ),
+                onTap:(){},
               ),
-              onTap:(){},
             ),
-            SizedBox(height: 30,),
-            Column(
-              children: [
-                Container(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'New Arrivals',
-                    style: GoogleFonts.poppins(
-                      fontSize: 24,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w700,
+            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 0, 10),
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'New Arrivals',
+                      style: kHomePageHeaderTextStyle,
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  height: 150,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemExtent: 160.0,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return _buildItem(context, large: true);
-                    },
+                  SizedBox(
+                    height: 10,
                   ),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Container(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Features',
-                    style: TextStyle(
-                      fontSize: 24,
-                      letterSpacing: 1.5,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w600,
+                  Container(
+                    height: 200,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemExtent: 330.0,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return _buildItem1(context, 10, large: true);
+                      },
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  height: 150,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemExtent: 160.0,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return _buildItem(context, large: true);
-                    },
+                ],
+              ),
+            ),
+            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 0, 30),
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Featured',
+                      style: kHomePageHeaderTextStyle,
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 160,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemExtent: 250.0,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return _buildItem2(context, 40,  large: true);
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -111,18 +129,46 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Widget _buildItem(BuildContext context, {bool large = false}) {
-  return Container(
-    margin: EdgeInsets.only(right: 20),
-    width: 120,
+Widget _buildItem1(BuildContext context, double marginSize, {bool large = false}) {
+  return Card(
+    shadowColor: Colors.black54,
+    elevation: 5,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+    ),
     child: Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          image: DecorationImage(
-            image: AssetImage('assets/background_image.png'),
-            fit: BoxFit.cover,
-          )),
-      height: 120,
+      margin: EdgeInsets.only(right: marginSize),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            image: DecorationImage(
+              image: AssetImage('assets/bed_img.png'),
+              fit: BoxFit.cover,
+            )),
+        height: 120,
+      ),
+    ),
+  );
+}
+
+Widget _buildItem2(BuildContext context, double marginSize, {bool large = false}) {
+  return Card(
+    shadowColor: Colors.black54,
+    elevation: 5,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+    ),
+    child: Container(
+      margin: EdgeInsets.only(right: marginSize),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            image: DecorationImage(
+              image: AssetImage('assets/bed_img2.png'),
+              fit: BoxFit.cover,
+            )),
+        height: 120,
+      ),
     ),
   );
 }
@@ -139,4 +185,3 @@ Widget buildTile(Widget child, {Function() onTap}) {
               : null,
           child: child));
 }
-

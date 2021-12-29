@@ -23,3 +23,9 @@ var kProfileDetailsTextStyle = GoogleFonts.poppins(
   fontWeight: FontWeight.w600,
   color: Colors.black54,
 );
+
+var kHomePageHeaderTextStyle = GoogleFonts.poppins(
+  fontSize: 24,
+  color: Colors.black54,
+  fontWeight: FontWeight.w700,
+);

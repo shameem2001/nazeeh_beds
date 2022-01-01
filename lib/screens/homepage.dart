@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nazeeh_beds/components/custom_app_drawer.dart';
 import 'package:nazeeh_beds/components/custom_appbar.dart';
 import 'package:nazeeh_beds/components/custom_bottom_navigation_bar.dart';
+import 'package:nazeeh_beds/screens/product_list_page.dart';
 import '../constants.dart';
 import 'chatbox_page.dart';
 import 'notification_page.dart';
@@ -47,20 +48,21 @@ class _HomePageState extends State<HomePage> {
                       image: DecorationImage(
                         image: AssetImage('assets/banner_img.png'),
                         fit: BoxFit.cover,
+                        alignment: Alignment.centerRight,
                       ),
                     gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                       colors: [
-                        Colors.black,
+                        Colors.black87,
                         Colors.black54,
-                        Colors.white54,
-                        Colors.white,
                       ],
                     ),
                   ),
                 ),
-                onTap:(){},
+                onTap:(){
+                  Navigator.pushReplacementNamed(context, ProductListPage.id);
+                },
               ),
             ),
             SizedBox(height: 10,),
@@ -130,44 +132,54 @@ class _HomePageState extends State<HomePage> {
 }
 
 Widget _buildItem1(BuildContext context, double marginSize, {bool large = false}) {
-  return Card(
-    shadowColor: Colors.black54,
-    elevation: 5,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-    ),
-    child: Container(
-      margin: EdgeInsets.only(right: marginSize),
+  return GestureDetector(
+    onTap: (){
+      Navigator.pushReplacementNamed(context, ProductListPage.id);
+    },
+    child: Card(
+      shadowColor: Colors.black54,
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      ),
       child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0),
-            image: DecorationImage(
-              image: AssetImage('assets/bed_img.png'),
-              fit: BoxFit.cover,
-            )),
-        height: 120,
+        margin: EdgeInsets.only(right: marginSize),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              image: DecorationImage(
+                image: AssetImage('assets/bed_img.png'),
+                fit: BoxFit.cover,
+              )),
+          height: 120,
+        ),
       ),
     ),
   );
 }
 
 Widget _buildItem2(BuildContext context, double marginSize, {bool large = false}) {
-  return Card(
-    shadowColor: Colors.black54,
-    elevation: 5,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-    ),
-    child: Container(
-      margin: EdgeInsets.only(right: marginSize),
+  return GestureDetector(
+    onTap: (){
+      Navigator.pushReplacementNamed(context, ProductListPage.id);
+    },
+    child: Card(
+      shadowColor: Colors.black54,
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      ),
       child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0),
-            image: DecorationImage(
-              image: AssetImage('assets/bed_img2.png'),
-              fit: BoxFit.cover,
-            )),
-        height: 120,
+        margin: EdgeInsets.only(right: marginSize),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              image: DecorationImage(
+                image: AssetImage('assets/bed_img2.png'),
+                fit: BoxFit.cover,
+              )),
+          height: 120,
+        ),
       ),
     ),
   );
@@ -176,7 +188,7 @@ Widget _buildItem2(BuildContext context, double marginSize, {bool large = false}
 Widget buildTile(Widget child, {Function() onTap}) {
   return Material(
       elevation: 14.0,
-      borderRadius: BorderRadius.circular(12.0),
+      borderRadius: BorderRadius.circular(20.0),
       shadowColor: Colors.grey[400],
       child: InkWell(
         // Do onTap() if it isn't null, otherwise do print()

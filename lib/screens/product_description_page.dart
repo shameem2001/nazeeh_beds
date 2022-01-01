@@ -73,7 +73,7 @@ class _ProductDescriptionPageState extends State<ProductDescriptionPage> {
             null,
             FontAwesomeIcons.opencart,
             context,
-            HomePage.id,
+            ProductListPage.id,
             null,
             CartPage.id,
           ),

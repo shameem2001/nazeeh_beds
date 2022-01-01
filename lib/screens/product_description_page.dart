@@ -70,12 +70,12 @@ class _ProductDescriptionPageState extends State<ProductDescriptionPage> {
           appBar: buildAppBar(
             'Details',
             Icons.arrow_back_ios,
-            null,
             FontAwesomeIcons.opencart,
+            null,
             context,
             ProductListPage.id,
-            null,
             CartPage.id,
+            null,
           ),
           body: Stack(
             children: [

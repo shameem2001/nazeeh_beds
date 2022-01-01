@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 const kprimaryColor = Color(0xff293B5F);
 const klightPrimaryColor = Color(0xee293B5F);
@@ -18,14 +17,16 @@ const kblueTextColorSmall = TextStyle(
   color: Colors.white70,
 );
 
-var kProfileDetailsTextStyle = GoogleFonts.poppins(
+const kProfileDetailsTextStyle = TextStyle(
   fontSize: 17,
-  fontWeight: FontWeight.w600,
+  fontFamily: 'Poppins',
+  fontWeight: FontWeight.w700,
   color: Colors.black54,
 );
 
-var kHomePageHeaderTextStyle = GoogleFonts.poppins(
+const kHomePageHeaderTextStyle = TextStyle(
   fontSize: 24,
+  fontFamily: 'Poppins',
   color: Colors.black54,
-  fontWeight: FontWeight.w700,
+  fontWeight: FontWeight.w800,
 );

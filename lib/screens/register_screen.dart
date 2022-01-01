@@ -62,6 +62,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   Center(
                     child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

@@ -52,6 +52,7 @@ class _HomePageState extends State<LoginScreen> {
                 ),
                 Center(
                   child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -377,6 +378,7 @@ class _HomePageState extends State<LoginScreen> {
           ],
           image: DecorationImage(
             image: AssetImage('assets/google_icon.png'),
+            scale: 12,
           ),
         ),
         //child: Icon(FontAwesomeIcons.google, size: 26,),

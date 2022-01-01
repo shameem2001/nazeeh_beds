@@ -83,6 +83,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     height: 200,
                     child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemExtent: 330.0,
                       itemCount: 10,
@@ -112,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     height: 160,
                     child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemExtent: 250.0,
                       itemCount: 10,

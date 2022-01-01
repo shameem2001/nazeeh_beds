@@ -27,7 +27,13 @@ class _NotificationPageState extends State<NotificationPage> {
       child: SafeArea(
         child: Scaffold(
           appBar: buildAppBar('Notification', null, null, Icons.close, context, null, null, HomePage.id),
-          body: Container(),
+          body: Container(
+            child: Center(
+              child: Text(
+                'No notifications'
+              ),
+            ),
+          ),
         ),
       ),
     );

@@ -33,6 +33,7 @@ dependencies:
   firebase_auth: ^3.3.4
   firebase_core: ^1.10.6
   google_sign_in: ^4.5.1
+  material_floating_search_bar: ^0.3.6
 
 dev_dependencies:
   flutter_test:
@@ -49,4 +50,8 @@ flutter:
     - family: Montserrat
       fonts:
         - asset: fonts/Montserrat-Medium.ttf
+          style: normal
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-regular.ttf
           style: normal

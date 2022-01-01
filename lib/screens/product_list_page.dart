@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nazeeh_beds/components/custom_appbar.dart';
 import 'package:nazeeh_beds/constants.dart';
 import 'package:nazeeh_beds/screens/cart_page.dart';
@@ -51,10 +50,11 @@ class _ProductListPageState extends State<ProductListPage> {
                   child: Center(
                     child: Text(
                       'Categories',
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
                         color: Colors.white,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
@@ -75,10 +75,11 @@ class _ProductListPageState extends State<ProductListPage> {
                         SizedBox(width: 5,),
                         Text(
                           'Sort by',
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -101,10 +102,11 @@ class _ProductListPageState extends State<ProductListPage> {
                         SizedBox(width: 5,),
                         Text(
                           'Filter',
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -188,33 +190,36 @@ class CardWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(1.0),
+                            padding: const EdgeInsets.all(5.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
                                   'Repose',
-                                  style: GoogleFonts.poppins(
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
                                     color: kprimaryColor,
                                     fontSize: 18,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w800,
                                   ),
                                 ),
                                 Text(
                                   'Extraordinary special edition',
-                                  style: GoogleFonts.poppins(
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
                                     color: Colors.black54,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
                                 Text(
                                   '₹22,000',
-                                  style: GoogleFonts.poppins(
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
                                       color: kprimaryColor,
                                       fontSize: 20,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w700,
                                       letterSpacing: 1.2
                                   ),
                                 ),
@@ -259,6 +264,34 @@ class SearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 12.0, 24, 0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
+        elevation: 5,
+        child: Container(
+          width: double.infinity,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          child: ListTile(
+            leading: FaIcon(FontAwesomeIcons.search, size: 20, color: Colors.black38,),
+            title: Text('Search',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+              fontFamily: 'Poppins',
+              color: Colors.black38,
+            ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

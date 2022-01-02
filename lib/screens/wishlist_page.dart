@@ -18,20 +18,31 @@ class WishlistPage extends StatefulWidget {
 class _WishlistPageState extends State<WishlistPage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: buildAppBar(
-          'Wishlist',
-          Icons.arrow_back_ios,
-          FontAwesomeIcons.comments,
-          Icons.notifications,
-          context,
-          HomePage.id,
-          ChatboxPage.id,
-          NotificationPage.id,
+    return WillPopScope(
+      onWillPop: () async {
+        if (Navigator.canPop(context)) {
+          Navigator.pop(context);
+          return true;
+        } else {
+          Navigator.popAndPushNamed(context, HomePage.id);
+          return false;
+        }
+      },
+      child: SafeArea(
+        child: Scaffold(
+          appBar: buildAppBar(
+            'Wishlist',
+            Icons.arrow_back_ios,
+            FontAwesomeIcons.comments,
+            Icons.notifications,
+            context,
+            HomePage.id,
+            ChatboxPage.id,
+            NotificationPage.id,
+          ),
+          body: Container(),
+          bottomNavigationBar: CustomBottomNavigationBar(),
         ),
-        body: Container(),
-        bottomNavigationBar: CustomBottomNavigationBar(),
       ),
     );
   }

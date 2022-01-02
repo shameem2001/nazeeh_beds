@@ -34,6 +34,8 @@ dependencies:
   firebase_core: ^1.10.6
   google_sign_in: ^4.5.1
   material_floating_search_bar: ^0.3.6
+  carousel_slider: ^4.0.0
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
@@ -53,5 +55,6 @@ flutter:
           style: normal
     - family: Poppins
       fonts:
-        - asset: fonts/Poppins-regular.ttf
+        - asset: fonts/Poppins-Regular.ttf
+        - asset: fonts/Poppins-Bold.ttf
           style: normal

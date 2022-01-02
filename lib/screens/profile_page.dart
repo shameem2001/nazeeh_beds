@@ -50,6 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Padding(
                         padding: const EdgeInsets.only(top:10.0),
                         child: StaggeredGridView.count(
+                          physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
                           crossAxisCount: 1,
                           mainAxisSpacing: 20.0,
